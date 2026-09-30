@@ -4,6 +4,7 @@ set -e
 
 source="$(dirname "$(readlink -f "$0")")"
 td="$source/trebledroid"
+tds="$source/trebledroid-staging"
 personal="$source/personal"
 
 apply_patches() {
@@ -47,4 +48,5 @@ apply_patches() {
 }
 
 apply_patches "$td"
+apply_patches "$tds"
 apply_patches "$personal"
