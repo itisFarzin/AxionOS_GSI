@@ -20,7 +20,7 @@ repo sync -j$(nproc)
 ```
 #### Apply patches
 ```bash
-bash AxionOS_GSI/patches/apply-patches.sh .
+bash AxionOS_GSI/patches/apply.sh .
 ```
 #### Build
 ```bash

@@ -30,8 +30,8 @@ index 0000000..9827193
 +
 +PRODUCT_NAME := treble_arm64_bvN
 +PRODUCT_DEVICE := tdgsi_arm64_ab
-+PRODUCT_BRAND := td
-+PRODUCT_SYSTEM_BRAND := td
++PRODUCT_BRAND := google
++PRODUCT_SYSTEM_BRAND := google
 +PRODUCT_MODEL := AxionOS
 +
 +# Overwrite the inherited "emulator" characteristics
