@@ -42,20 +42,21 @@ index 2038776fe5df..97b7fa6cecb2 100644
          "AvfBuildFlags",
          "vendor.aospa.biometrics.face",
 diff --git a/services/core/java/com/android/server/wm/DisplayPolicy.java b/services/core/java/com/android/server/wm/DisplayPolicy.java
-index c5f9bbfd93db..199656ee38db 100644
+index 1e5f99d0e..ec5db6b9b 100644
 --- a/services/core/java/com/android/server/wm/DisplayPolicy.java
 +++ b/services/core/java/com/android/server/wm/DisplayPolicy.java
-@@ -225,6 +225,9 @@ public class DisplayPolicy {
+@@ -226,6 +226,10 @@ public class DisplayPolicy {
       */
      private boolean mRemoteInsetsControllerControlsSystemBars;
  
 +    private vendor.mediatek.hardware.mtkpower.V1_1.IMtkPerf mMtkPerf;
 +    private vendor.mediatek.hardware.mtkpower.V1_0.IMtkPower mOldMtkPerf;
 +
++
      @Nullable
      StatusBarManagerInternal getStatusBarManagerInternal() {
          synchronized (mServiceAcquireLock) {
-@@ -471,6 +474,20 @@ public class DisplayPolicy {
+@@ -472,6 +476,20 @@ public class DisplayPolicy {
              mScreenOnFully = true;
          }
  
@@ -76,10 +77,11 @@ index c5f9bbfd93db..199656ee38db 100644
          final Looper looper = UiThread.getHandler().getLooper();
          mHandler = new PolicyHandler(looper);
          // TODO(b/181821798) Migrate SystemGesturesPointerEventListener to use window context.
-@@ -570,6 +587,17 @@ public class DisplayPolicy {
+@@ -571,6 +589,19 @@ public class DisplayPolicy {
                          mService.mPowerManagerInternal.setPowerBoost(
                                  Boost.INTERACTION, duration);
                      }
++
 +                    if (mOldMtkPerf != null) {
 +                        try {
 +                            android.util.Log.d("PHH-Power", "mtk1 fling power hint");
@@ -91,10 +93,11 @@ index c5f9bbfd93db..199656ee38db 100644
 +                            android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
 +                        }
 +                    }
-                     AxDragonite.getInstance().onSystemFling(duration + 160);
-                 }
- 
-@@ -589,6 +617,28 @@ public class DisplayPolicy {
++
+                     final IAxDragonite dragonite = LocalServices.getService(IAxDragonite.class);
+                     if (dragonite != null) {
+                         dragonite.onSystemFling(duration + 160);
+@@ -593,6 +624,29 @@ public class DisplayPolicy {
                      if (listener != null) {
                          listener.onTouchStart();
                      }
@@ -120,6 +123,7 @@ index c5f9bbfd93db..199656ee38db 100644
 +                            android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
 +                        }
 +                    }
++
                  }
  
                  @Override

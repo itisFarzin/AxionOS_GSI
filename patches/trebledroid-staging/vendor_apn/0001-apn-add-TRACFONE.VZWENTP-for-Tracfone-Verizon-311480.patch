@@ -1,4 +1,4 @@
-From 4857e1382f8629d205602504babd93238e5af306 Mon Sep 17 00:00:00 2001
+From 9c4706d6a6e2016a4bb86b8f2d5c5a7cbc0183ae Mon Sep 17 00:00:00 2001
 From: "Christopher A. Williamson" <contact@chrisaw.io>
 Date: Mon, 1 Jun 2026 23:42:03 +0100
 Subject: [PATCH] apn: add TRACFONE.VZWENTP for Tracfone Verizon (311480)
@@ -12,12 +12,12 @@ value but not the other. stock ROMs ship both entries.
  1 file changed, 16 insertions(+)
 
 diff --git a/US.xml b/US.xml
-index e7562b6..6a6bd84 100644
+index b384d0f..4c0513a 100644
 --- a/US.xml
 +++ b/US.xml
-@@ -3945,6 +3945,22 @@
-         roaming_protocol="IP"
-         type="default,dun,supl"
+@@ -135,6 +135,22 @@
+         proxy="10.1.20.10"
+         type="default,supl"
      />
 +    <apn
 +        mcc="311"
@@ -36,8 +36,8 @@ index e7562b6..6a6bd84 100644
 +        type="default,dun,supl"
 +    />
      <apn
-         mcc="311"
-         mnc="480"
+         mcc="310"
+         mnc="680"
 -- 
-2.54.0
+2.43.0
 
